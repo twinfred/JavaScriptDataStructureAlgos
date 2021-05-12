@@ -89,6 +89,18 @@ class DLL {
     }
   }
 
-  
+  unflattenRecursive(startingNode) {
+    let runner = startingNode || this.head;
+
+    while(runner.next || runner.child) {
+      if(runner.child && runner.child.previous) {
+        runner.child.previous.next = null;
+        runner.child.previous = null;
+        this.unflattenRecursive(runner.child);
+      }
+
+      runner = runner.next;
+    }
+  }
 }
 
