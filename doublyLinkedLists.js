@@ -72,8 +72,23 @@ class DLL {
       this.tail.next = runner.child;
       runner.previous = this.tail;
       this.setNewTail();
-      this.flattenSimplified(runner.next);
+      this.flattenSimplifiedRecursive(runner.next);
     }
   }
+
+  flattenSimplified() {
+    let runner = this.head;
+
+    while (runner.next || runner.child) {
+      if(runner.child) {
+        this.tail.next = runner.child;
+        runner.previous = this.tail;
+        this.setNewTail();
+      }
+      runner = runner.next;
+    }
+  }
+
+  
 }
 
