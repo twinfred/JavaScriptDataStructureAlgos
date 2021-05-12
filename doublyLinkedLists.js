@@ -43,6 +43,7 @@ class DLL {
 
     if(startingNode.child) {
       this.tail.next = startingNode.child;
+      startingNode.previous = this.tail;
       this.tail = startingNode.child;
       this.setNewTail();
       if(startingNode.next) {
@@ -61,6 +62,7 @@ class DLL {
     while(runner.next) {
       if(runner.child) {
         this.tail.next = runner.child;
+        runner.previous = this.tail;
         this.setNewTail();
       }
       runner = runner.next;
@@ -68,6 +70,7 @@ class DLL {
 
     if(runner.child) {
       this.tail.next = runner.child;
+      runner.previous = this.tail;
       this.setNewTail();
       this.flattenSimplified(runner.next);
     }
